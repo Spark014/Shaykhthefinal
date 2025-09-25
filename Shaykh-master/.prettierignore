@@ -1,0 +1,8 @@
+
+node_modules
+.next
+out
+public/build
+package-lock.json
+yarn.lock
+# Add any other files or directories you want Prettier to ignore

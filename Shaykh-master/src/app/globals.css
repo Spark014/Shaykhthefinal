@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme */
+    --background: 30 20% 97% / 0.7;
+    --foreground: 210 15% 25%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 25%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 25%;
+    --primary: 220 19% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 40% 90%;
+    --secondary-foreground: 200 30% 35%;
+    --muted: 30 20% 94%;
+    --muted-foreground: 210 10% 40%;
+    --accent: 40 22% 43%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 88%;
+    --input: 0 0% 80%;
+    --ring: 208 21% 45%;
+    --radius: 0.5rem;
+
+    /* Sidebar Light Theme with Blur */
+    --sidebar-background: 220 19% 100% / 0.25;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-accent: 0 0% 100%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 208 21% 35%;
+    --sidebar-ring: hsl(var(--accent));
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    /* Blur Effects */
+    --sidebar-blur: 12px;
+    --sidebar-backdrop-brightness: 1.05;
+    --sidebar-backdrop-saturate: 1.2;
+  }
+
+  .dark {
+    /* Dark Theme */
+    --background: 220 19% 15% / 0.6;
+    --foreground: 0 0% 95%;
+    --card: 208 24% 15%;
+    --card-foreground: 0 0% 95%;
+    --popover: 208 24% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 208 24% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 208 24% 25%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 208 24% 20%;
+    --muted-foreground: 208 10% 60%;
+    --accent: 40 20% 63%;
+    --accent-foreground: 208 24% 10%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 208 24% 25%;
+    --input: 208 24% 25%;
+    --ring: 208 24% 55%;
+    
+    /* Sidebar Dark Theme with Blur */
+    --sidebar-background: 220 19% 10% / 0.25;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 40 20% 63%;
+    --sidebar-primary-foreground: 208 24% 10%;
+    --sidebar-accent: 208 24% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 208 24% 18%;
+    --sidebar-ring: 40 20% 63%;
+    
+    /* Dark Mode Blur Effects */
+    --sidebar-blur: 16px;
+    --sidebar-backdrop-brightness: 0.95;
+    --sidebar-backdrop-saturate: 1.1;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-body antialiased transition-colors duration-300;
+    background-color: hsl(var(--background));
+    background-image: url('/AdobeStock_1053427603.jpeg');
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+  .dark body {
+    background-color: hsl(var(--background));
+    background-image: url('/AdobeStock_888757105.jpeg');
+  }
+
+  /* Enhanced Glassmorphism Effects */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/20 dark:bg-black/10 border border-white/30 dark:border-white/10 shadow-2xl;
+  }
+  
+  .glass-hover {
+    @apply hover:bg-white/30 dark:hover:bg-black/20 hover:border-blue-300/50 dark:hover:border-blue-400/30 transition-all duration-300;
+  }
+  
+  .glass-text-blue {
+    background: linear-gradient(135deg, #1e40af, #ca8a04);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  
+  .dark .glass-text-blue {
+    background: linear-gradient(135deg, #60a5fa, #fbbf24);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  
+  .glass-text-muted {
+    @apply text-blue-700/70 dark:text-blue-300/70;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+  }
+
+  /* Enhanced liquid glass animation */
+  @keyframes liquid-glow-light {
+    0%, 100% { 
+      background-position: 0% 50%;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.15), 0 0 60px rgba(251, 191, 36, 0.1);
+    }
+    50% { 
+      background-position: 100% 50%;
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.2), 0 0 80px rgba(251, 191, 36, 0.15);
+    }
+  }
+  
+  @keyframes liquid-glow-dark {
+    0%, 100% { 
+      background-position: 0% 50%;
+      box-shadow: 0 0 30px rgba(96, 165, 250, 0.2), 0 0 60px rgba(251, 191, 36, 0.15);
+    }
+    50% { 
+      background-position: 100% 50%;
+      box-shadow: 0 0 40px rgba(96, 165, 250, 0.3), 0 0 80px rgba(251, 191, 36, 0.2);
+    }
+  }
+  
+  .liquid-glass {
+    background: linear-gradient(-45deg, 
+      rgba(255, 255, 255, 0.2), 
+      rgba(59, 130, 246, 0.1), 
+      rgba(251, 191, 36, 0.1), 
+      rgba(255, 255, 255, 0.15)
+    );
+    background-size: 400% 400%;
+    animation: liquid-glow-light 4s ease-in-out infinite;
+  }
+  
+  .dark .liquid-glass {
+    background: linear-gradient(-45deg, 
+      rgba(0, 0, 0, 0.15), 
+      rgba(96, 165, 250, 0.1), 
+      rgba(251, 191, 36, 0.1), 
+      rgba(0, 0, 0, 0.1)
+    );
+    animation: liquid-glow-dark 4s ease-in-out infinite;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+
+  body, html {
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  /* Backdrop filter fallback */
+  @supports not (backdrop-filter: blur(1px)) {
+    :root {
+      --sidebar-background: 220 19% 45% / 0.95;
+    }
+    .dark {
+      --sidebar-background: 220 19% 1% / 0.15;
+    }
+  }
+}

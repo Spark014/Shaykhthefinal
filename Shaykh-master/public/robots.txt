@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://YOUR_DOMAIN.COM/sitemap.xml

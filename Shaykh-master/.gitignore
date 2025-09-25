@@ -1,0 +1,56 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Next.js
+/.next/
+/out/
+
+# Vercel
+.vercel
+
+# Production
+/build
+
+# Misc
+.DS_Store
+*.pem
+*.log
+*.local # Ignore all .local files
+
+# Environment Variables
+# IMPORTANT: Add .env.local here if it's not already covered by *.local
+# to ensure your specific Firebase credentials are not committed.
+# .env.local (already covered by *.local)
+.env
+.env.local
+.env.example
+.env.*.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

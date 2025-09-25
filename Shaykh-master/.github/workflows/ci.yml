@@ -1,0 +1,61 @@
+
+name: Al-Sa'd Portal CI
+
+on:
+  push:
+    branches: [ main ] # Or your primary branch name
+  pull_request:
+    branches: [ main ] # Or your primary branch name
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x] # Test against common Node versions
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm' # Or 'yarn' if you use yarn
+
+    - name: Install dependencies
+      run: npm ci # Or yarn install --frozen-lockfile
+
+    - name: Run linters
+      run: npm run lint # Assumes you have a lint script in package.json
+
+    - name: Run type checking
+      run: npm run typecheck # Assumes you have a typecheck script
+
+    # Add this step if you have tests
+    # - name: Run tests
+    #   run: npm test # Or your specific test command
+
+    - name: Build Next.js application
+      # You need to provide dummy env vars for the build process if your app needs them at build time
+      # For NEXT_PUBLIC_ vars, they are inlined. For server vars, they are usually not needed for `next build`
+      # unless your `next.config.js` or build scripts access them.
+      # Example of providing a dummy var:
+      # env:
+      #   NEXT_PUBLIC_FIREBASE_API_KEY: "dummy_value_for_build"
+      #   NEXT_PUBLIC_SUPABASE_URL: "http://dummy.com"
+      #   NEXT_PUBLIC_SUPABASE_ANON_KEY: "dummykey"
+      #   # Add other NEXT_PUBLIC_ vars if build fails without them
+      run: npm run build
+
+    # Optional: If Sentry is used and you want to upload source maps during CI build (requires Sentry env vars)
+    # - name: Upload Sentry Source Maps
+    #   if: success() && env.SENTRY_AUTH_TOKEN != '' && env.SENTRY_ORG != '' && env.SENTRY_PROJECT != ''
+    #   env:
+    #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+    #     SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+    #     SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+    #   run: npx @sentry/cli releases files ${{ github.sha }} upload-sourcemaps .next --rewrite --url-prefix "~/_next"
+    #   # Ensure SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT are set as secrets in GitHub repository settings

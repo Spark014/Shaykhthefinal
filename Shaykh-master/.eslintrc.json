@@ -1,0 +1,29 @@
+
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended" // Add Prettier plugin
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier" // Add Prettier plugin
+  ],
+  "rules": {
+    // Basic ESLint rules
+    "no-console": ["warn", { "allow": ["warn", "error"] }], // Allow console.warn and console.error
+    "no-unused-vars": "off", // Use @typescript-eslint/no-unused-vars instead
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-explicit-any": "warn", // Warn instead of error for 'any'
+    "@typescript-eslint/explicit-module-boundary-types": "off", // Optional: useful for inferring return types
+
+    // Next.js specific (already covered by next/core-web-vitals, but can be fine-tuned)
+    "@next/next/no-img-element": "warn", // Suggest using next/image
+
+    // Prettier rules (delegated to Prettier, but can enable its ESLint rule)
+    "prettier/prettier": "warn" 
+  },
+  "ignorePatterns": ["node_modules/", ".next/", "out/", "public/build/"]
+}
